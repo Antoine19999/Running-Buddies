@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Running Buddies</string>
+    <string name="login">Login</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
+    <string name="register">Register</string>
+    <string name="button_to_register">Button to register</string>
+    <string name="click_to_login">click_to_login</string>
+    <string name="click_to_register">Click to Register</string>
+    <string name="click_to_log_in">Click to log in</string>
+    <string name="log_out">Log out</string>
+    <string name="click_here_to_log_in">Click here to Log in</string>
+</resources>
