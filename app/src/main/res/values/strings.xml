@@ -10,4 +10,19 @@
     <string name="click_to_log_in">Click to log in</string>
     <string name="log_out">Log out</string>
     <string name="click_here_to_log_in">Click here to Log in</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="user_name">User Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="age">Age</string>
+    <string name="user_information">User Information</string>
+    <string name="select_your_gender">Select your gender:</string>
+    <string name="submit_user_information">Submit User Information</string>
+    <string name="evening_from_6_p_m_to_midnight">Evening (From 6 p.m to midnight)</string>
+    <string name="afternoon_from_12_a_m_to_6_p_m">Afternoon (From 12 a.m to 6 p.m)</string>
+    <string name="morning_between_6_a_m_and_12_a_m">Morning (Between 6 a.m and 12 a.m)</string>
+    <string name="what_time_do_you_like_to_run">What time do you like to run ?:</string>
+    <string name="what_is_your_maximum_speed">What is your maximum speed ?</string>
+    <string name="what_is_your_minimum_speed">What is your minimum speed?</string>
 </resources>
