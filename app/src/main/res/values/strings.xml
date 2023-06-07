@@ -32,4 +32,5 @@
     <string name="grant_permission">Grant Permission</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="go_to_map">Go to map</string>
+    <string name="search_runners">Search runners</string>
 </resources>
