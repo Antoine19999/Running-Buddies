@@ -1,15 +1,11 @@
 package com.example.runningbuddies.controllers;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.runningbuddies.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     FirebaseAuth auth;
-    Button button;
+    Button logoutButton;
     TextView textView;
     FirebaseUser user;
 
@@ -31,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.userEmail);
 
         auth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.logout);
+        logoutButton = findViewById(R.id.logout);
         user = auth.getCurrentUser();
 
         if (user == null){
@@ -43,14 +39,11 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(user.getEmail());
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        logoutButton.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
