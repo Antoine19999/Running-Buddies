@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     FirebaseAuth auth;
-    Button logoutButton;
+    Button logoutButton, mapButton;
     TextView textView;
     FirebaseUser user;
 
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
+        mapButton = findViewById(R.id.map);
         user = auth.getCurrentUser();
 
         if (user == null){
@@ -44,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        mapButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            startActivity(intent);
         });
     }
 }
