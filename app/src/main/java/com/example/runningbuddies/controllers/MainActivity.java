@@ -3,24 +3,34 @@ package com.example.runningbuddies.controllers;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.runningbuddies.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener {
 
 
     FirebaseAuth auth;
     Button logoutButton, mapButton, searchButton;
     TextView textView;
     FirebaseUser user;
+    FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
+    LocationManager mLocationManager;
 
 
 
@@ -28,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
 
         textView = findViewById(R.id.userEmail);
 
@@ -77,7 +88,54 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
             }, 100);
+        } else {
+            getLocation();
         }
     }
 
+    @RequiresPermission(allOf = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+    private void getLocation() {
+        mLocationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+
+        // Request location updates if permission is granted
+        if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            }
+        }
+    }
+
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        // Get current user
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            // Update user location
+            mDatabase.child("users").child(currentUser.getUid()).child("latitude").setValue(latitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("longitude").setValue(longitude);
+        }
+
+    }
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
 }
