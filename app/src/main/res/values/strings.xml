@@ -26,4 +26,8 @@
     <string name="what_is_your_maximum_speed">What is your maximum speed ?</string>
     <string name="what_is_your_minimum_speed">What is your minimum speed?</string>
     <string name="user_email">User email</string>
+    <string name="running_buddies_needs_permission_to_access_device_location_to_provide_required_services_please_allow_the_permission">Running Buddies needs permission to access device location to provide required services. Please allow the permission.</string>
+    <string name="image_de_l_application">Image de l\'application</string>
+    <string name="permission_request">Permission Request</string>
+    <string name="grant_permission">Grant Permission</string>
 </resources>
