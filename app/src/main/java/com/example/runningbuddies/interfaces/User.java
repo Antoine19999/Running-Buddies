@@ -1,7 +1,5 @@
 package com.example.runningbuddies.interfaces;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
@@ -16,13 +14,8 @@ public class User {
     public String userMaxSpeed;
     public String userMinSpeed;
     public String userGender;
-
-
-
-    public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
-    }
-
+    public double userLatitude;
+    public double userLongitude;
 
     public User(String userName, String userEmail, String firstName, String lastName, int age,
                 String userGender, String timePreference, String minimumSpeed, String maximumSpeed) {
@@ -35,6 +28,8 @@ public class User {
         this.userGender = userGender;
         this.userMinSpeed = minimumSpeed;
         this.userMaxSpeed = maximumSpeed;
+        this.userLatitude = 0.0;
+        this.userLongitude = 0.0;
     }
 
 }
