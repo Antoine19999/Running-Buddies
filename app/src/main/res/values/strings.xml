@@ -25,4 +25,5 @@
     <string name="what_time_do_you_like_to_run">What time do you like to run ?:</string>
     <string name="what_is_your_maximum_speed">What is your maximum speed ?</string>
     <string name="what_is_your_minimum_speed">What is your minimum speed?</string>
+    <string name="user_email">User email</string>
 </resources>

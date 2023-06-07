@@ -7,6 +7,15 @@
     android:gravity="center"
     tools:context=".controllers.MainActivity">
 
+    <TextView
+        android:text="@string/user_email"
+        android:id="@+id/userEmail"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:text="@string/log_out"

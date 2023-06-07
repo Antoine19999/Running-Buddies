@@ -1,27 +1,28 @@
 package com.example.runningbuddies.controllers;
+import com.example.runningbuddies.interfaces.User;
 
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.runningbuddies.R;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
     Button submitUserInformation;
 
     FirebaseAuth mAuth;
+
+    DatabaseReference mDatabase;
 
 
     @Override
@@ -103,6 +106,28 @@ public class ProfileActivity extends AppCompatActivity {
                     Spinner maxSpinner = findViewById(R.id.spinner2);
                     String minSpeed = minSpinner.getSelectedItem().toString();
                     String maxSpeed = maxSpinner.getSelectedItem().toString();
+
+                    // Get current user
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                    if (currentUser != null) {
+                        String userUid = currentUser.getUid();
+                        String userEmail = currentUser.getEmail();
+                        // Write a message to the database
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+                        // Create a new User
+                        User user = new User(userName, userEmail, firstName, lastName, age,
+                                selectedRadioButtonGender.toString(),
+                                selectedRadioButtonRun.toString(), minSpeed, maxSpeed);
+
+                        // Save user info
+                        mDatabase.child("users").child(userUid).setValue(user);
+
+                        // Go to main activity
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
 
                     Log.d("Information", "Gender = " + selectedRadioButtonGender.getText()
                             + "Speed = " + selectedRadioButtonRun.getText()
