@@ -34,4 +34,5 @@
     <string name="go_to_map">Go to map</string>
     <string name="search_runners">Search runners</string>
     <string name="option_get_place">option get place</string>
+    <string name="record_a_run">Record a run</string>
 </resources>
