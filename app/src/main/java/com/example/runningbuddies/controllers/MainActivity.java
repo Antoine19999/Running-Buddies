@@ -112,15 +112,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance("https://running-buddies-b032c-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
         // Get current user
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
             // Update user location
-            mDatabase.child("users").child(currentUser.getUid()).child("latitude").setValue(latitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("last name").setValue(R.id.lastName);
+            mDatabase.child("users").child(currentUser.getUid()).child("first name").setValue(R.id.firstName);
+            mDatabase.child("users").child(currentUser.getUid()).child("user name").setValue(R.id.userName);
+            mDatabase.child("users").child(currentUser.getUid()).child("Email").setValue(R.id.email);
+            mDatabase.child("users").child(currentUser.getUid()).child("age").setValue(R.id.age);
+            //mDatabase.child("users").child(currentUser.getUid()).child("min_speed").setValue(R.id.minSpeed);
+            //mDatabase.child("users").child(currentUser.getUid()).child("max_speed").setValue(R.id.maxSpeed);
             mDatabase.child("users").child(currentUser.getUid()).child("longitude").setValue(longitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("latitude").setValue(latitude);
         }
 
     }
