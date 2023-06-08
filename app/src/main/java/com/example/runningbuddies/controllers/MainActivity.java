@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
     FirebaseAuth auth;
-    Button logoutButton, mapButton, searchButton;
+    Button logoutButton, mapButton, searchButton, settingsButton;
     TextView textView;
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
         mapButton = findViewById(R.id.map);
-        searchButton = findViewById(R.id.settings);
+        searchButton = findViewById(R.id.searchButton);
+        settingsButton = findViewById(R.id.settings);
         user = auth.getCurrentUser();
 
         if (user == null){
@@ -71,6 +72,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         searchButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
+        });
+
+        settingsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         });
 
@@ -119,8 +125,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         if (currentUser != null) {
             // Update user location
-            mDatabase.child("users").child(currentUser.getUid()).child("latitude").setValue(latitude);
-            mDatabase.child("users").child(currentUser.getUid()).child("longitude").setValue(longitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("userLatitude").setValue(latitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("userLongitude").setValue(longitude);
         }
 
     }

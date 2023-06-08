@@ -44,4 +44,8 @@
     <string name="time_preference_label">Time preference: </string>
     <string name="default_time_preference">Afternoon</string>
     <string name="send_friend_request">Send friend request</string>
+    <string name="user_email_label">User email:</string>
+    <string name="default_user_email">johndoe@example.com</string>
+    <string name="save_label">Save</string>
+    <string name="settings_label">Settings</string>
 </resources>
