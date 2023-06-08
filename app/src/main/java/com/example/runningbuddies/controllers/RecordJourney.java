@@ -238,7 +238,7 @@ public class RecordJourney extends AppCompatActivity {
                     stopButton.setEnabled(false);
                     playButton.setEnabled(false);
                 }
-                return;
+
 
         }
     }
