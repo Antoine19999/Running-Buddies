@@ -7,9 +7,10 @@ public class User {
 
     public String userName;
     public String firstName;
+
     public String lastName;
     public String userEmail;
-    public int userAge;
+    public Long userAge;
     public String userTimePreference;
     public String userMaxSpeed;
     public String userMinSpeed;
@@ -17,7 +18,31 @@ public class User {
     public double userLatitude;
     public double userLongitude;
 
-    public User(String userName, String userEmail, String firstName, String lastName, int age,
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Long getUserAge() {
+        return userAge;
+    }
+
+    public String getUserTimePreference() {
+        return userTimePreference;
+    }
+
+    public String getUserMaxSpeed() {
+        return userMaxSpeed;
+    }
+
+    public String getUserMinSpeed() {
+        return userMinSpeed;
+    }
+
+    public User(String userName, String userEmail, String firstName, String lastName, Long age,
                 String userGender, String timePreference, String minimumSpeed, String maximumSpeed) {
         this.firstName = firstName;
         this.lastName = lastName;

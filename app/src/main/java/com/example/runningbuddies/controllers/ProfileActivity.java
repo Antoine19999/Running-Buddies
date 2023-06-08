@@ -81,11 +81,11 @@ public class ProfileActivity extends AppCompatActivity {
 
             submitUserInformation.setOnClickListener(view -> {
                 String firstName, lastName, userName;
-                int age;
+                long age;
                 firstName = String.valueOf(editTextFirstName.getText());
                 lastName = String.valueOf(editTextLastName.getText());
                 userName = String.valueOf(editTextUserName.getText());
-                age = Integer.parseInt(editTextAge.getText().toString());
+                age = Long.parseLong(editTextAge.getText().toString());
 
                 // get selected radio button from radioGroup
                 int genderSelectedId = radioGroupGender.getCheckedRadioButtonId();
