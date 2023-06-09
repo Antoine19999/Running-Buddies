@@ -1,6 +1,8 @@
 package com.example.runningbuddies.controllers;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +26,8 @@ import java.util.List;
 public class SettingsActivity extends AppCompatActivity {
 
     TextView userEmail;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
 
     private RadioGroup radioGroupRun;
     private RadioButton selectedRadioButtonRun;
@@ -38,6 +42,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         userEmail = findViewById(R.id.settings_user_email);
 
@@ -98,6 +104,11 @@ public class SettingsActivity extends AppCompatActivity {
                 mDatabase.child("users").child(userUid).child("userTimePreference").setValue(selectedRadioButtonRun.getText().toString());
                 mDatabase.child("users").child(userUid).child("userMinSpeed").setValue(minSpeed);
                 mDatabase.child("users").child(userUid).child("userMaxSpeed").setValue(maxSpeed);
+
+                // Save info in shared preferences
+                sharedpreferences.edit().putString("userTimePreference", selectedRadioButtonRun.getText().toString()).apply();
+                sharedpreferences.edit().putString("userMinSpeed", minSpeed).apply();
+                sharedpreferences.edit().putString("userMaxSpeed", maxSpeed).apply();
 
                 Toast.makeText(SettingsActivity.this, "Information saved.",
                         Toast.LENGTH_SHORT).show();
