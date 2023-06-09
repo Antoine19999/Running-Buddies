@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
     FirebaseAuth auth;
-    Button logoutButton, mapButton, searchButton, recordButton;
+    Button logoutButton, mapButton, searchButton, recordButton, settingsButton;
     TextView textView;
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
         mapButton = findViewById(R.id.map);
-        searchButton = findViewById(R.id.settings);
+        searchButton = findViewById(R.id.searchButton);
+        settingsButton = findViewById(R.id.settings);
         recordButton = findViewById(R.id.record);
         user = auth.getCurrentUser();
 
@@ -77,6 +78,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         recordButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), RecordJourney.class);
+            startActivity(intent);
+        });
+
+        settingsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         });
 
@@ -118,15 +124,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
 
-        mDatabase = FirebaseDatabase.getInstance("https://running-buddies-b032c-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Get current user
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
             // Update user location
-            mDatabase.child("users").child(currentUser.getUid()).child("longitude").setValue(longitude);
-            mDatabase.child("users").child(currentUser.getUid()).child("latitude").setValue(latitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("userLatitude").setValue(latitude);
+            mDatabase.child("users").child(currentUser.getUid()).child("userLongitude").setValue(longitude);
         }
 
     }

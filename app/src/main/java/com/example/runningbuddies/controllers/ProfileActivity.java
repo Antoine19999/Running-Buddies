@@ -1,6 +1,8 @@
 package com.example.runningbuddies.controllers;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,8 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
-    // Define the object for Radio Group,
-    // Submit and Clear buttons
+
+    public static final String MyPREFERENCES = "MyPrefs" ;
     EditText editTextFirstName, editTextLastName, editTextUserName, editTextAge;
     private RadioGroup radioGroupGender;
     private RadioButton selectedRadioButtonGender;
@@ -36,12 +38,15 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     DatabaseReference mDatabase;
+    SharedPreferences sharedpreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         editTextFirstName = findViewById(R.id.firstName);
         editTextLastName = findViewById(R.id.lastName);
@@ -81,11 +86,11 @@ public class ProfileActivity extends AppCompatActivity {
 
             submitUserInformation.setOnClickListener(view -> {
                 String firstName, lastName, userName;
-                int age;
+                long age;
                 firstName = String.valueOf(editTextFirstName.getText());
                 lastName = String.valueOf(editTextLastName.getText());
                 userName = String.valueOf(editTextUserName.getText());
-                age = Integer.parseInt(editTextAge.getText().toString());
+                age = Long.parseLong(editTextAge.getText().toString());
 
                 // get selected radio button from radioGroup
                 int genderSelectedId = radioGroupGender.getCheckedRadioButtonId();
@@ -115,6 +120,11 @@ public class ProfileActivity extends AppCompatActivity {
 
                     // Save user info
                     mDatabase.child("users").child(userUid).setValue(user);
+
+                    // Save info in shared preferences
+                    sharedpreferences.edit().putString("userTimePreference", selectedRadioButtonRun.getText().toString()).apply();
+                    sharedpreferences.edit().putString("userMinSpeed", minSpeed).apply();
+                    sharedpreferences.edit().putString("userMaxSpeed", maxSpeed).apply();
 
                     // Go to main activity
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);

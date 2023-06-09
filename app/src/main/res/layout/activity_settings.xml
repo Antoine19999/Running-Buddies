@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controllers.SettingsActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="@string/user_information"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="1dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_email_label"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/settings_user_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_user_email"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#e0e0e0"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/what_time_do_you_like_to_run"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <RadioGroup
+            android:id="@+id/settings_radio_group_run"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/settings_radio_run_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/morning_between_6_a_m_and_12_a_m" />
+
+            <RadioButton
+                android:id="@+id/settings_radio_run_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/afternoon_from_12_a_m_to_6_p_m" />
+            <RadioButton
+                android:id="@+id/settings_radio_run_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/evening_from_6_p_m_to_midnight" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_is_your_minimum_speed"
+        android:textColor="#000"
+        android:layout_gravity="start"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <Spinner
+        android:id = "@+id/settings_spinner"
+        android:minHeight="48dp"
+        android:layout_gravity="start"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:prompt="@string/app_name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_is_your_maximum_speed"
+        android:textColor="#000"
+        android:layout_gravity="start"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <Spinner
+        android:id = "@+id/settings_spinner2"
+        android:minHeight="48dp"
+        android:layout_gravity="start"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:prompt="@string/app_name"
+        />
+
+    <Button
+        android:id="@+id/save_info_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/save_label"
+        android:textAllCaps="false" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -17,7 +17,7 @@
     <string name="female">Female</string>
     <string name="age">Age</string>
     <string name="user_information">User Information</string>
-    <string name="select_your_gender">Select your gender:</string>
+    <string name="select_your_gender">Select your gender: </string>
     <string name="submit_user_information">Submit User Information</string>
     <string name="evening_from_6_p_m_to_midnight">Evening (From 6 p.m to midnight)</string>
     <string name="afternoon_from_12_a_m_to_6_p_m">Afternoon (From 12 a.m to 6 p.m)</string>
@@ -35,4 +35,19 @@
     <string name="search_runners">Search runners</string>
     <string name="option_get_place">option get place</string>
     <string name="record_a_run">Record a run</string>
+    <string name="default_user_name">John Doe</string>
+    <string name="user_name_label">User name: </string>
+    <string name="age_label">Age: </string>
+    <string name="default_age">50</string>
+    <string name="minimum_speed_label">Minimum speed: </string>
+    <string name="default_min_speed">6 km/h</string>
+    <string name="maximum_speed_label">Maximum speed: </string>
+    <string name="default_max_speed">22 km/h</string>
+    <string name="time_preference_label">Time preference: </string>
+    <string name="default_time_preference">Afternoon</string>
+    <string name="send_friend_request">Send friend request</string>
+    <string name="user_email_label">User email:</string>
+    <string name="default_user_email">johndoe@example.com</string>
+    <string name="save_label">Save</string>
+    <string name="settings_label">Settings</string>
 </resources>
